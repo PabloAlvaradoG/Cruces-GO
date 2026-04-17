@@ -12,40 +12,236 @@ LOGO_B64 = "iVBORw0KGgoAAAANSUhEUgAAAowAAAGZCAYAAAADwGBjAAAACXBIWXMAAC4jAAAuIwF4
 
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@400;500;600&display=swap');
-html,body,[class*="css"]{font-family:'Open Sans',sans-serif;}
-.corp-header{background:linear-gradient(135deg,#0d2c6b 0%,#1a5cb8 60%,#2e7dd4 100%);border-radius:12px;margin-bottom:28px;box-shadow:0 6px 24px rgba(13,44,107,.25);overflow:hidden;}
-.corp-header-inner{display:flex;align-items:center;justify-content:space-between;padding:20px 36px;}
-.corp-logo-area{display:flex;align-items:center;gap:20px;}
-.corp-logo-wrap{background:#fff;border-radius:10px;padding:8px 14px;display:flex;align-items:center;box-shadow:0 2px 10px rgba(0,0,0,.15);}
-.corp-logo-wrap img{height:56px;display:block;}
-.corp-title-block{border-left:3px solid rgba(255,255,255,.35);padding-left:20px;}
-.corp-company{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;color:rgba(255,255,255,.75);text-transform:uppercase;margin-bottom:3px;}
-.corp-dept{font-family:'Montserrat',sans-serif;font-size:12px;font-weight:500;color:rgba(255,255,255,.65);letter-spacing:1.5px;text-transform:uppercase;}
-.corp-app-title{font-family:'Montserrat',sans-serif;font-size:22px;font-weight:800;color:#fff;letter-spacing:.5px;margin-top:2px;line-height:1.2;}
-.corp-badge{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:8px;padding:10px 20px;text-align:right;}
-.corp-badge-label{font-size:10px;letter-spacing:2px;color:rgba(255,255,255,.6);text-transform:uppercase;font-weight:600;}
-.corp-badge-value{font-family:'Montserrat',sans-serif;font-size:15px;font-weight:700;color:#fff;margin-top:2px;}
-section[data-testid="stSidebar"]{background:#f4f7fc;border-right:1px solid #dde5f2;}
-.kpi-grid{display:flex;gap:16px;margin-bottom:24px;flex-wrap:wrap;}
-.kpi-card{flex:1;min-width:160px;background:#fff;border-radius:10px;padding:18px 20px;border-left:4px solid #1a5cb8;box-shadow:0 2px 12px rgba(0,0,0,.07);}
-.kpi-card.red{border-left-color:#c00000;}.kpi-card.green{border-left-color:#375623;}.kpi-card.amber{border-left-color:#c07700;}
-.kpi-label{font-size:11px;font-weight:600;letter-spacing:1px;color:#7a8aab;text-transform:uppercase;margin-bottom:8px;}
-.kpi-value{font-family:'Montserrat',sans-serif;font-size:30px;font-weight:800;color:#0d2c6b;line-height:1;}
-.kpi-sub{font-size:11px;color:#9aabbf;margin-top:4px;}
-.section-title{font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;color:#0d2c6b;text-transform:uppercase;border-bottom:2px solid #1a5cb8;padding-bottom:6px;margin:24px 0 16px 0;}
-.info-strip{background:linear-gradient(90deg,#eaf1fb 0%,#f7faff 100%);border:1px solid #c5d8f5;border-radius:8px;padding:12px 20px;display:flex;gap:32px;flex-wrap:wrap;align-items:center;margin-bottom:20px;}
-.info-item{display:flex;flex-direction:column;}
-.info-item-label{font-size:10px;letter-spacing:1.5px;color:#7a8aab;text-transform:uppercase;font-weight:600;}
-.info-item-value{font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:#0d2c6b;}
-.conf-pill{display:inline-flex;align-items:center;gap:8px;border-radius:20px;padding:5px 14px;font-family:'Montserrat',sans-serif;font-size:13px;font-weight:700;margin-right:8px;margin-bottom:6px;}
-.conf-pill.alta{background:#e2efda;color:#375623;}.conf-pill.media{background:#fff2cc;color:#7a5a00;}.conf-pill.baja{background:#fce4d6;color:#c00000;}
-.stDownloadButton>button{background:linear-gradient(135deg,#0d2c6b,#1a5cb8)!important;color:white!important;border:none!important;border-radius:8px!important;font-family:'Montserrat',sans-serif!important;font-weight:700!important;font-size:14px!important;letter-spacing:.5px!important;padding:12px 28px!important;box-shadow:0 4px 16px rgba(13,44,107,.3)!important;width:100%!important;}
-.stDownloadButton>button:hover{background:linear-gradient(135deg,#1a5cb8,#2e7dd4)!important;transform:translateY(-1px)!important;}
-button[kind="primary"]{background:linear-gradient(135deg,#0d2c6b,#1a5cb8)!important;border-radius:8px!important;font-family:'Montserrat',sans-serif!important;font-weight:700!important;}
-.stProgress>div>div>div>div{background:linear-gradient(90deg,#0d2c6b,#1a5cb8)!important;}
-[data-testid="metric-container"]{background:#fff;border-radius:10px;padding:16px!important;border:1px solid #dde5f2;box-shadow:0 2px 8px rgba(0,0,0,.05);}
-hr{border-color:#dde5f2!important;}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap');
+
+html, body, [class*="css"] {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #0047AB;
+}
+
+/* ── Fondo general azul GO Corp ── */
+.stApp {
+    background: linear-gradient(160deg, #003d99 0%, #0052cc 40%, #0066ff 100%);
+    min-height: 100vh;
+}
+.block-container {
+    background: transparent !important;
+    padding-top: 0 !important;
+}
+
+/* ── Header ── */
+.corp-header {
+    background: rgba(0,0,0,0.25);
+    border-radius: 14px;
+    margin-bottom: 28px;
+    border: 1px solid rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+}
+.corp-header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 36px;
+}
+.corp-logo-area { display: flex; align-items: center; gap: 24px; }
+.corp-logo-wrap {
+    background: white;
+    border-radius: 12px;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+.corp-logo-wrap img { height: 60px; display: block; }
+.corp-title-block { border-left: 3px solid rgba(255,255,255,0.4); padding-left: 22px; }
+.corp-company {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 3px; color: rgba(255,255,255,0.7);
+    text-transform: uppercase; margin-bottom: 3px;
+}
+.corp-dept {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px; font-weight: 500;
+    color: rgba(255,255,255,0.6);
+    letter-spacing: 1.5px; text-transform: uppercase;
+}
+.corp-app-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px; font-weight: 900;
+    color: #ffffff; letter-spacing: 0.5px;
+    margin-top: 3px; line-height: 1.2;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+.corp-badge {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 10px; padding: 12px 22px; text-align: right;
+}
+.corp-badge-label { font-size: 10px; letter-spacing: 2px; color: rgba(255,255,255,0.6); text-transform: uppercase; font-weight: 600; }
+.corp-badge-value { font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #fff; margin-top: 3px; }
+
+/* ── Sidebar ── */
+section[data-testid="stSidebar"] {
+    background: rgba(0,30,80,0.7) !important;
+    border-right: 1px solid rgba(255,255,255,0.1) !important;
+    backdrop-filter: blur(12px);
+}
+section[data-testid="stSidebar"] * { color: rgba(255,255,255,0.85) !important; }
+section[data-testid="stSidebar"] .section-title { color: #ffffff !important; border-bottom-color: rgba(255,255,255,0.4) !important; }
+section[data-testid="stSidebar"] caption, section[data-testid="stSidebar"] small { color: rgba(255,255,255,0.5) !important; }
+
+/* ── Cards blancas flotantes ── */
+.card {
+    background: rgba(255,255,255,0.97);
+    border-radius: 14px;
+    padding: 24px 28px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+}
+
+/* ── KPI cards ── */
+.kpi-grid { display: flex; gap: 16px; margin-bottom: 8px; flex-wrap: wrap; }
+.kpi-card {
+    flex: 1; min-width: 160px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 12px; padding: 20px 22px;
+    border: 1px solid rgba(255,255,255,0.25);
+    backdrop-filter: blur(8px);
+    border-top: 4px solid rgba(255,255,255,0.6);
+}
+.kpi-card.red   { border-top-color: #ff6b6b; }
+.kpi-card.green { border-top-color: #51cf66; }
+.kpi-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; color: rgba(255,255,255,0.7); text-transform: uppercase; margin-bottom: 8px; }
+.kpi-value { font-family: 'Montserrat', sans-serif; font-size: 36px; font-weight: 900; color: #ffffff; line-height: 1; text-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+.kpi-sub { font-size: 11px; color: rgba(255,255,255,0.55); margin-top: 5px; }
+
+/* ── Section titles ── */
+.section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px; font-weight: 800;
+    letter-spacing: 2.5px; color: rgba(255,255,255,0.9);
+    text-transform: uppercase;
+    border-bottom: 2px solid rgba(255,255,255,0.3);
+    padding-bottom: 8px; margin: 28px 0 18px 0;
+}
+
+/* ── Info strip ── */
+.info-strip {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 10px; padding: 14px 22px;
+    display: flex; gap: 36px; flex-wrap: wrap;
+    align-items: center; margin-bottom: 20px;
+    backdrop-filter: blur(8px);
+}
+.info-item { display: flex; flex-direction: column; }
+.info-item-label { font-size: 10px; letter-spacing: 1.5px; color: rgba(255,255,255,0.6); text-transform: uppercase; font-weight: 700; }
+.info-item-value { font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700; color: #ffffff; }
+
+/* ── Confidence pills ── */
+.conf-pill { display: inline-flex; align-items: center; gap: 8px; border-radius: 20px; padding: 6px 16px; font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; margin-right: 8px; margin-bottom: 6px; }
+.conf-pill.alta  { background: rgba(81,207,102,0.2); color: #a3f7b5; border: 1px solid rgba(81,207,102,0.4); }
+.conf-pill.media { background: rgba(255,212,59,0.2); color: #ffe066; border: 1px solid rgba(255,212,59,0.4); }
+.conf-pill.baja  { background: rgba(255,107,107,0.2); color: #ffa8a8; border: 1px solid rgba(255,107,107,0.4); }
+
+/* ── Buttons ── */
+.stDownloadButton > button {
+    background: #ffffff !important;
+    color: #003d99 !important;
+    border: none !important;
+    border-radius: 10px !important;
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 800 !important;
+    font-size: 15px !important;
+    letter-spacing: 0.5px !important;
+    padding: 14px 28px !important;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.25) !important;
+    width: 100% !important;
+    transition: all 0.2s !important;
+}
+.stDownloadButton > button:hover {
+    background: #e8f0ff !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 10px 32px rgba(0,0,0,0.3) !important;
+}
+button[kind="primary"] {
+    background: #ffffff !important;
+    color: #003d99 !important;
+    border-radius: 10px !important;
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 800 !important;
+    font-size: 15px !important;
+    box-shadow: 0 6px 24px rgba(0,0,0,0.2) !important;
+}
+button[kind="primary"]:hover { background: #e8f0ff !important; transform: translateY(-2px) !important; }
+
+/* ── File uploader ── */
+[data-testid="stFileUploader"] {
+    background: rgba(255,255,255,0.1) !important;
+    border: 2px dashed rgba(255,255,255,0.35) !important;
+    border-radius: 12px !important;
+}
+[data-testid="stFileUploader"] * { color: rgba(255,255,255,0.85) !important; }
+
+/* ── Progress bar ── */
+.stProgress > div > div > div > div { background: #ffffff !important; }
+
+/* ── Expander ── */
+.streamlit-expanderHeader {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 700 !important;
+    color: rgba(255,255,255,0.9) !important;
+    font-size: 13px !important;
+    background: rgba(255,255,255,0.08) !important;
+    border-radius: 8px !important;
+}
+.streamlit-expanderContent {
+    background: rgba(255,255,255,0.06) !important;
+    border-radius: 0 0 8px 8px !important;
+    color: rgba(255,255,255,0.85) !important;
+}
+
+/* ── Alerts ── */
+.stSuccess { background: rgba(81,207,102,0.15) !important; border-left-color: #51cf66 !important; color: #a3f7b5 !important; border-radius: 10px !important; }
+.stInfo    { background: rgba(255,255,255,0.1) !important; border-left-color: rgba(255,255,255,0.5) !important; color: rgba(255,255,255,0.85) !important; border-radius: 10px !important; }
+.stError   { background: rgba(255,107,107,0.15) !important; border-left-color: #ff6b6b !important; border-radius: 10px !important; }
+
+/* ── Metrics ── */
+[data-testid="metric-container"] {
+    background: rgba(255,255,255,0.12) !important;
+    border-radius: 12px !important;
+    padding: 18px !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+}
+[data-testid="metric-container"] label {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 700 !important;
+    color: rgba(255,255,255,0.7) !important;
+    font-size: 11px !important;
+    letter-spacing: 1px !important;
+    text-transform: uppercase !important;
+}
+[data-testid="metric-container"] [data-testid="stMetricValue"] {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 900 !important;
+    color: #ffffff !important;
+    font-size: 28px !important;
+}
+
+/* ── Write / text ── */
+p, li, span, div { color: rgba(255,255,255,0.85); }
+strong, b { color: #ffffff !important; }
+hr { border-color: rgba(255,255,255,0.15) !important; }
+
+/* ── Selectbox / inputs ── */
+.stTextInput input, .stSelectbox select {
+    background: rgba(255,255,255,0.1) !important;
+    color: white !important;
+    border-color: rgba(255,255,255,0.2) !important;
+    border-radius: 8px !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -360,13 +556,13 @@ def generar_plantilla():
 # ── SIDEBAR ────────────────────────────────────────────────────────────────────
 with st.sidebar:
     st.markdown('<div class="section-title">📋 Instrucciones</div>',unsafe_allow_html=True)
-    st.markdown("""<div style="font-size:13px;color:#3a4a6b;line-height:1.8"><b>1.</b> Descarga la plantilla<br><b>2.</b> Completa la hoja <b>Diferencias</b><br><b>3.</b> Ajusta parámetros en <b>Configuracion</b><br><b>4.</b> Sube el archivo y ejecuta</div>""",unsafe_allow_html=True)
+    st.markdown("""<div style="font-size:13px;color:rgba(255,255,255,0.8);line-height:1.9"><b style="color:white">1.</b> Descarga la plantilla<br><b style="color:white">2.</b> Completa la hoja <b style="color:white">Diferencias</b><br><b style="color:white">3.</b> Ajusta parámetros en <b style="color:white">Configuracion</b><br><b style="color:white">4.</b> Sube el archivo y ejecuta</div>""",unsafe_allow_html=True)
     st.divider()
     st.markdown('<div class="section-title">📥 Plantilla</div>',unsafe_allow_html=True)
     st.download_button(label="⬇️  Descargar Plantilla",data=generar_plantilla(),file_name="Diferencias_Plantilla.xlsx",mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",use_container_width=True)
     st.caption("Llena la plantilla y súbela en el panel principal.")
     st.divider()
-    st.markdown("""<div style="font-size:11px;color:#9aabbf;text-align:center;line-height:1.8">Departamento de Auditoría<br><b style="color:#0d2c6b">GO Corp.</b><br>Motor de Cruces v2.0</div>""",unsafe_allow_html=True)
+    st.markdown("""<div style="font-size:11px;color:rgba(255,255,255,0.45);text-align:center;line-height:1.8">Departamento de Auditoría<br><b style="color:rgba(255,255,255,0.75)">GO Corp.</b><br>Motor de Cruces v2.0</div>""",unsafe_allow_html=True)
 
 # ── SESSION STATE ──────────────────────────────────────────────────────────────
 if "resultado_excel" not in st.session_state: st.session_state.resultado_excel = None
