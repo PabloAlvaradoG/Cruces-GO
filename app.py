@@ -12,240 +12,212 @@ LOGO_B64 = "iVBORw0KGgoAAAANSUhEUgAAAowAAAGZCAYAAAADwGBjAAAACXBIWXMAAC4jAAAuIwF4
 
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
 
-html, body, [class*="css"] {
-    font-family: 'Open Sans', sans-serif;
-    background-color: #0047AB;
-}
+html, body, [class*="css"] { font-family: 'Inter', sans-serif; }
 
-/* ── Fondo general azul GO Corp ── */
-.stApp {
-    background: linear-gradient(160deg, #003d99 0%, #0052cc 40%, #0066ff 100%);
-    min-height: 100vh;
-}
-.block-container {
-    background: transparent !important;
-    padding-top: 0 !important;
-}
+/* ── Fondo blanco general ── */
+.stApp { background: #f8f9fc; }
+.block-container { padding-top: 0 !important; max-width: 1200px; }
 
-/* ── Header ── */
+/* ── Header corporativo ── */
 .corp-header {
-    background: rgba(0,0,0,0.25);
-    border-radius: 14px;
-    margin-bottom: 28px;
-    border: 1px solid rgba(255,255,255,0.15);
-    backdrop-filter: blur(10px);
-    overflow: hidden;
+    background: #ffffff;
+    border-radius: 0 0 0 0;
+    margin-bottom: 0;
+    border-bottom: 3px solid #0052cc;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+    margin-left: -4rem;
+    margin-right: -4rem;
+    padding: 0 4rem;
 }
 .corp-header-inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 22px 36px;
+    padding: 16px 0;
 }
-.corp-logo-area { display: flex; align-items: center; gap: 24px; }
-.corp-logo-wrap {
-    background: white;
-    border-radius: 12px;
-    padding: 10px 16px;
-    display: flex;
-    align-items: center;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-}
-.corp-logo-wrap img { height: 60px; display: block; }
-.corp-title-block { border-left: 3px solid rgba(255,255,255,0.4); padding-left: 22px; }
+.corp-logo-area { display: flex; align-items: center; gap: 20px; }
+.corp-logo-wrap { display: flex; align-items: center; }
+.corp-logo-wrap img { height: 52px; display: block; }
+.corp-divider { width: 1px; height: 44px; background: #e0e7f3; margin: 0 4px; }
+.corp-title-block { padding-left: 16px; }
 .corp-company {
     font-family: 'Montserrat', sans-serif;
-    font-size: 11px; font-weight: 700;
-    letter-spacing: 3px; color: rgba(255,255,255,0.7);
-    text-transform: uppercase; margin-bottom: 3px;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 2.5px; color: #0052cc;
+    text-transform: uppercase; margin-bottom: 2px;
 }
 .corp-dept {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 12px; font-weight: 500;
-    color: rgba(255,255,255,0.6);
-    letter-spacing: 1.5px; text-transform: uppercase;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px; font-weight: 400;
+    color: #6b7a99; letter-spacing: 0.5px;
 }
 .corp-app-title {
     font-family: 'Montserrat', sans-serif;
-    font-size: 24px; font-weight: 900;
-    color: #ffffff; letter-spacing: 0.5px;
-    margin-top: 3px; line-height: 1.2;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    font-size: 18px; font-weight: 800;
+    color: #0d1f4e; letter-spacing: -0.3px;
+    margin-top: 1px; line-height: 1.2;
 }
-.corp-badge {
-    background: rgba(255,255,255,0.12);
-    border: 1px solid rgba(255,255,255,0.25);
-    border-radius: 10px; padding: 12px 22px; text-align: right;
+.corp-right {
+    display: flex; flex-direction: column; align-items: flex-end; gap: 4px;
 }
-.corp-badge-label { font-size: 10px; letter-spacing: 2px; color: rgba(255,255,255,0.6); text-transform: uppercase; font-weight: 600; }
-.corp-badge-value { font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: #fff; margin-top: 3px; }
+.corp-date {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px; color: #6b7a99; font-weight: 400;
+}
+.corp-version {
+    background: #0052cc;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 1px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+}
 
 /* ── Sidebar ── */
 section[data-testid="stSidebar"] {
-    background: rgba(0,30,80,0.7) !important;
-    border-right: 1px solid rgba(255,255,255,0.1) !important;
-    backdrop-filter: blur(12px);
-}
-section[data-testid="stSidebar"] * { color: rgba(255,255,255,0.85) !important; }
-section[data-testid="stSidebar"] .section-title { color: #ffffff !important; border-bottom-color: rgba(255,255,255,0.4) !important; }
-section[data-testid="stSidebar"] caption, section[data-testid="stSidebar"] small { color: rgba(255,255,255,0.5) !important; }
-
-/* ── Cards blancas flotantes ── */
-.card {
-    background: rgba(255,255,255,0.97);
-    border-radius: 14px;
-    padding: 24px 28px;
-    margin-bottom: 20px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    background: #ffffff !important;
+    border-right: 1px solid #e5eaf5 !important;
 }
 
 /* ── KPI cards ── */
-.kpi-grid { display: flex; gap: 16px; margin-bottom: 8px; flex-wrap: wrap; }
+.kpi-grid { display: flex; gap: 14px; margin-bottom: 24px; flex-wrap: wrap; }
 .kpi-card {
-    flex: 1; min-width: 160px;
-    background: rgba(255,255,255,0.15);
-    border-radius: 12px; padding: 20px 22px;
-    border: 1px solid rgba(255,255,255,0.25);
-    backdrop-filter: blur(8px);
-    border-top: 4px solid rgba(255,255,255,0.6);
+    flex: 1; min-width: 150px;
+    background: #ffffff;
+    border-radius: 10px; padding: 20px 22px;
+    border: 1px solid #e5eaf5;
+    border-top: 4px solid #0052cc;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
 }
-.kpi-card.red   { border-top-color: #ff6b6b; }
-.kpi-card.green { border-top-color: #51cf66; }
-.kpi-label { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; color: rgba(255,255,255,0.7); text-transform: uppercase; margin-bottom: 8px; }
-.kpi-value { font-family: 'Montserrat', sans-serif; font-size: 36px; font-weight: 900; color: #ffffff; line-height: 1; text-shadow: 0 2px 8px rgba(0,0,0,0.2); }
-.kpi-sub { font-size: 11px; color: rgba(255,255,255,0.55); margin-top: 5px; }
+.kpi-card.red   { border-top-color: #d32f2f; }
+.kpi-card.green { border-top-color: #2e7d32; }
+.kpi-label {
+    font-size: 10px; font-weight: 600;
+    letter-spacing: 1.5px; color: #8a96b0;
+    text-transform: uppercase; margin-bottom: 10px;
+}
+.kpi-value {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 32px; font-weight: 800;
+    color: #0d1f4e; line-height: 1;
+}
+.kpi-sub { font-size: 11px; color: #b0bac9; margin-top: 5px; }
 
 /* ── Section titles ── */
 .section-title {
     font-family: 'Montserrat', sans-serif;
-    font-size: 12px; font-weight: 800;
-    letter-spacing: 2.5px; color: rgba(255,255,255,0.9);
+    font-size: 11px; font-weight: 700;
+    letter-spacing: 2px; color: #0052cc;
     text-transform: uppercase;
-    border-bottom: 2px solid rgba(255,255,255,0.3);
-    padding-bottom: 8px; margin: 28px 0 18px 0;
+    border-bottom: 1px solid #e5eaf5;
+    padding-bottom: 8px; margin: 28px 0 16px 0;
+    display: flex; align-items: center; gap: 8px;
 }
 
 /* ── Info strip ── */
 .info-strip {
-    background: rgba(255,255,255,0.12);
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 10px; padding: 14px 22px;
+    background: #f0f5ff;
+    border: 1px solid #c7d9f8;
+    border-left: 4px solid #0052cc;
+    border-radius: 0 8px 8px 0;
+    padding: 12px 20px;
     display: flex; gap: 36px; flex-wrap: wrap;
     align-items: center; margin-bottom: 20px;
-    backdrop-filter: blur(8px);
 }
 .info-item { display: flex; flex-direction: column; }
-.info-item-label { font-size: 10px; letter-spacing: 1.5px; color: rgba(255,255,255,0.6); text-transform: uppercase; font-weight: 700; }
-.info-item-value { font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700; color: #ffffff; }
+.info-item-label { font-size: 9px; letter-spacing: 1.5px; color: #6b7a99; text-transform: uppercase; font-weight: 700; margin-bottom: 2px; }
+.info-item-value { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; color: #0d1f4e; }
 
 /* ── Confidence pills ── */
-.conf-pill { display: inline-flex; align-items: center; gap: 8px; border-radius: 20px; padding: 6px 16px; font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; margin-right: 8px; margin-bottom: 6px; }
-.conf-pill.alta  { background: rgba(81,207,102,0.2); color: #a3f7b5; border: 1px solid rgba(81,207,102,0.4); }
-.conf-pill.media { background: rgba(255,212,59,0.2); color: #ffe066; border: 1px solid rgba(255,212,59,0.4); }
-.conf-pill.baja  { background: rgba(255,107,107,0.2); color: #ffa8a8; border: 1px solid rgba(255,107,107,0.4); }
+.conf-pill { display: inline-flex; align-items: center; gap: 6px; border-radius: 6px; padding: 5px 12px; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; margin-right: 8px; margin-bottom: 6px; }
+.conf-pill.alta  { background: #e8f5e9; color: #2e7d32; border: 1px solid #a5d6a7; }
+.conf-pill.media { background: #fffde7; color: #f57f17; border: 1px solid #fff176; }
+.conf-pill.baja  { background: #ffebee; color: #c62828; border: 1px solid #ef9a9a; }
 
-/* ── Buttons ── */
+/* ── Download button ── */
 .stDownloadButton > button {
-    background: #ffffff !important;
-    color: #003d99 !important;
+    background: #0052cc !important;
+    color: white !important;
     border: none !important;
-    border-radius: 10px !important;
+    border-radius: 8px !important;
     font-family: 'Montserrat', sans-serif !important;
-    font-weight: 800 !important;
-    font-size: 15px !important;
-    letter-spacing: 0.5px !important;
-    padding: 14px 28px !important;
-    box-shadow: 0 6px 24px rgba(0,0,0,0.25) !important;
+    font-weight: 700 !important;
+    font-size: 14px !important;
+    padding: 13px 28px !important;
+    box-shadow: 0 4px 14px rgba(0,82,204,0.3) !important;
     width: 100% !important;
     transition: all 0.2s !important;
 }
 .stDownloadButton > button:hover {
-    background: #e8f0ff !important;
-    transform: translateY(-2px) !important;
-    box-shadow: 0 10px 32px rgba(0,0,0,0.3) !important;
+    background: #003d99 !important;
+    box-shadow: 0 6px 20px rgba(0,82,204,0.4) !important;
+    transform: translateY(-1px) !important;
 }
+
+/* ── Primary button ── */
 button[kind="primary"] {
-    background: #ffffff !important;
-    color: #003d99 !important;
-    border-radius: 10px !important;
+    background: #0052cc !important;
+    color: white !important;
+    border-radius: 8px !important;
     font-family: 'Montserrat', sans-serif !important;
-    font-weight: 800 !important;
-    font-size: 15px !important;
-    box-shadow: 0 6px 24px rgba(0,0,0,0.2) !important;
+    font-weight: 700 !important;
+    font-size: 14px !important;
+    box-shadow: 0 4px 14px rgba(0,82,204,0.25) !important;
 }
-button[kind="primary"]:hover { background: #e8f0ff !important; transform: translateY(-2px) !important; }
+button[kind="primary"]:hover {
+    background: #003d99 !important;
+    transform: translateY(-1px) !important;
+}
 
 /* ── File uploader ── */
 [data-testid="stFileUploader"] {
-    background: rgba(255,255,255,0.1) !important;
-    border: 2px dashed rgba(255,255,255,0.35) !important;
-    border-radius: 12px !important;
+    background: #fafbff !important;
+    border: 2px dashed #b3c9f5 !important;
+    border-radius: 10px !important;
+    padding: 8px !important;
 }
-[data-testid="stFileUploader"] * { color: rgba(255,255,255,0.85) !important; }
 
 /* ── Progress bar ── */
-.stProgress > div > div > div > div { background: #ffffff !important; }
+.stProgress > div > div > div > div { background: #0052cc !important; }
 
 /* ── Expander ── */
 .streamlit-expanderHeader {
     font-family: 'Montserrat', sans-serif !important;
-    font-weight: 700 !important;
-    color: rgba(255,255,255,0.9) !important;
-    font-size: 13px !important;
-    background: rgba(255,255,255,0.08) !important;
-    border-radius: 8px !important;
-}
-.streamlit-expanderContent {
-    background: rgba(255,255,255,0.06) !important;
-    border-radius: 0 0 8px 8px !important;
-    color: rgba(255,255,255,0.85) !important;
+    font-weight: 600 !important; color: #0d1f4e !important;
+    font-size: 12px !important; background: #f8f9fc !important;
+    border-radius: 8px !important; border: 1px solid #e5eaf5 !important;
 }
 
 /* ── Alerts ── */
-.stSuccess { background: rgba(81,207,102,0.15) !important; border-left-color: #51cf66 !important; color: #a3f7b5 !important; border-radius: 10px !important; }
-.stInfo    { background: rgba(255,255,255,0.1) !important; border-left-color: rgba(255,255,255,0.5) !important; color: rgba(255,255,255,0.85) !important; border-radius: 10px !important; }
-.stError   { background: rgba(255,107,107,0.15) !important; border-left-color: #ff6b6b !important; border-radius: 10px !important; }
+.stSuccess { border-left-color: #2e7d32 !important; background: #f1f8f1 !important; border-radius: 8px !important; }
+.stInfo    { border-left-color: #0052cc !important; background: #f0f5ff !important; border-radius: 8px !important; }
+.stError   { border-left-color: #c62828 !important; background: #fff5f5 !important; border-radius: 8px !important; }
 
 /* ── Metrics ── */
 [data-testid="metric-container"] {
-    background: rgba(255,255,255,0.12) !important;
-    border-radius: 12px !important;
-    padding: 18px !important;
-    border: 1px solid rgba(255,255,255,0.2) !important;
+    background: #ffffff !important; border-radius: 10px !important;
+    padding: 18px !important; border: 1px solid #e5eaf5 !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04) !important;
 }
 [data-testid="metric-container"] label {
-    font-family: 'Montserrat', sans-serif !important;
-    font-weight: 700 !important;
-    color: rgba(255,255,255,0.7) !important;
-    font-size: 11px !important;
-    letter-spacing: 1px !important;
-    text-transform: uppercase !important;
+    font-family: 'Montserrat', sans-serif !important; font-weight: 600 !important;
+    color: #8a96b0 !important; font-size: 10px !important;
+    letter-spacing: 1.5px !important; text-transform: uppercase !important;
 }
 [data-testid="metric-container"] [data-testid="stMetricValue"] {
     font-family: 'Montserrat', sans-serif !important;
-    font-weight: 900 !important;
-    color: #ffffff !important;
-    font-size: 28px !important;
+    font-weight: 800 !important; color: #0d1f4e !important;
 }
-
-/* ── Write / text ── */
-p, li, span, div { color: rgba(255,255,255,0.85); }
-strong, b { color: #ffffff !important; }
-hr { border-color: rgba(255,255,255,0.15) !important; }
-
-/* ── Selectbox / inputs ── */
-.stTextInput input, .stSelectbox select {
-    background: rgba(255,255,255,0.1) !important;
-    color: white !important;
-    border-color: rgba(255,255,255,0.2) !important;
-    border-radius: 8px !important;
-}
+hr { border-color: #e5eaf5 !important; }
+p, li { color: #3a4560; }
 </style>
 """, unsafe_allow_html=True)
 
-now_date = datetime.now().strftime("%d/%m/%Y")
+now_date = datetime.now().strftime("%d de %B, %Y")
 st.markdown(f"""
 <div class="corp-header">
   <div class="corp-header-inner">
@@ -253,15 +225,16 @@ st.markdown(f"""
       <div class="corp-logo-wrap">
         <img src="data:image/png;base64,{LOGO_B64}" alt="GO Corp"/>
       </div>
+      <div class="corp-divider"></div>
       <div class="corp-title-block">
-        <div class="corp-company">GO Corp.</div>
-        <div class="corp-dept">Departamento de Auditoría</div>
+        <div class="corp-company">GO Corp. &nbsp;·&nbsp; Departamento de Auditoría</div>
         <div class="corp-app-title">Algoritmo Cruces de Inventario</div>
+        <div class="corp-dept">Motor de análisis y conciliación de diferencias</div>
       </div>
     </div>
-    <div class="corp-badge">
-      <div class="corp-badge-label">Fecha</div>
-      <div class="corp-badge-value">{now_date}</div>
+    <div class="corp-right">
+      <div class="corp-date">{now_date}</div>
+      <div class="corp-version">v2.0</div>
     </div>
   </div>
 </div>
@@ -556,13 +529,13 @@ def generar_plantilla():
 # ── SIDEBAR ────────────────────────────────────────────────────────────────────
 with st.sidebar:
     st.markdown('<div class="section-title">📋 Instrucciones</div>',unsafe_allow_html=True)
-    st.markdown("""<div style="font-size:13px;color:rgba(255,255,255,0.8);line-height:1.9"><b style="color:white">1.</b> Descarga la plantilla<br><b style="color:white">2.</b> Completa la hoja <b style="color:white">Diferencias</b><br><b style="color:white">3.</b> Ajusta parámetros en <b style="color:white">Configuracion</b><br><b style="color:white">4.</b> Sube el archivo y ejecuta</div>""",unsafe_allow_html=True)
+    st.markdown("""<div style="font-size:13px;color:#3a4560;line-height:1.9"><b style="color:#0d1f4e">1.</b> Descarga la plantilla<br><b style="color:#0d1f4e">2.</b> Completa la hoja <b style="color:#0d1f4e">Diferencias</b><br><b style="color:#0d1f4e">3.</b> Ajusta parámetros en <b style="color:#0d1f4e">Configuracion</b><br><b style="color:#0d1f4e">4.</b> Sube el archivo y ejecuta</div>""",unsafe_allow_html=True)
     st.divider()
     st.markdown('<div class="section-title">📥 Plantilla</div>',unsafe_allow_html=True)
     st.download_button(label="⬇️  Descargar Plantilla",data=generar_plantilla(),file_name="Diferencias_Plantilla.xlsx",mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",use_container_width=True)
     st.caption("Llena la plantilla y súbela en el panel principal.")
     st.divider()
-    st.markdown("""<div style="font-size:11px;color:rgba(255,255,255,0.45);text-align:center;line-height:1.8">Departamento de Auditoría<br><b style="color:rgba(255,255,255,0.75)">GO Corp.</b><br>Motor de Cruces v2.0</div>""",unsafe_allow_html=True)
+    st.markdown("""<div style="font-size:11px;color:#8a96b0;text-align:center;line-height:1.8">Departamento de Auditoría<br><b style="color:#0052cc">GO Corp.</b><br>Motor de Cruces v2.0</div>""",unsafe_allow_html=True)
 
 # ── SESSION STATE ──────────────────────────────────────────────────────────────
 if "resultado_excel" not in st.session_state: st.session_state.resultado_excel = None
