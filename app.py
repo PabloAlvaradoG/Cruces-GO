@@ -646,50 +646,49 @@ if uploaded_file:
                 st.write(f"**Incluir Marca:** {'Sí' if cfg['FILTRAR_MARCA'] else 'No'}")
         st.divider()
         st.markdown('<div class="section-title">⚙️ Ejecución</div>',unsafe_allow_html=True)
+        area_resultado = st.empty()
+
         if st.button("🚀  Ejecutar Algoritmo de Cruces",type="primary",use_container_width=True):
             pb=st.progress(0,text="Iniciando proceso..."); st_=st.empty(); t0=time.time()
             try:
                 dc,dsc,dnc,rfm,rsm=ejecutar_cruces(df_.copy(),cfg,pb,st_)
                 tt=time.time()-t0; st_.empty(); pb.empty()
+                pb.progress(0.95,text="📊 Generando Excel...")
                 xout,stats=generar_excel(df_,dc,dsc,dnc,rfm,rsm,tt,cfg)
-                # Guardar en archivo temporal en disco (evita límite de memoria en session_state)
-                tmp=tempfile.NamedTemporaryFile(delete=False,suffix=".xlsx")
-                tmp.write(xout.getvalue()); tmp.flush(); tmp.close()
-                # Limpiar archivo anterior si existe
-                if st.session_state.ruta_excel and os.path.exists(st.session_state.ruta_excel):
-                    try: os.remove(st.session_state.ruta_excel)
-                    except: pass
-                st.session_state.ruta_excel=tmp.name
-                st.session_state.resultado_excel=True   # solo bandera
+                excel_bytes=xout.getvalue()
+                pb.progress(1.0,text="✅ ¡Listo!")
+                ts_=datetime.now().strftime("%Y%m%d_%H%M")
+                # Guardar en session_state
+                st.session_state.resultado_excel=excel_bytes
                 st.session_state.resultado_stats=stats
-                st.session_state.resultado_ts=datetime.now().strftime("%Y%m%d_%H%M")
-                st.session_state.auto_descargar=True
-                st.rerun()
+                st.session_state.resultado_ts=ts_
             except Exception as e:
                 pb.empty(); st_.empty(); st.error(f"❌ Error: {str(e)}")
+
+        # Mostrar resultados si existen — persiste entre reruns
         if st.session_state.resultado_excel is not None:
             stats=st.session_state.resultado_stats
-            st.success("✅ Proceso completado — resultado listo para descargar")
+            st.success("✅ Proceso completado — descarga lista")
             st.markdown('<div class="section-title">📈 Resultados del Proceso</div>',unsafe_allow_html=True)
             r1,r2,r3=st.columns(3)
-            with r1: st.metric("Cruces con Costo",stats["total_cruces"]); st.metric("Cruces sin Costo",stats["total_sc"])
+            with r1:
+                st.metric("Cruces con Costo",stats["total_cruces"])
+                st.metric("Cruces sin Costo",stats["total_sc"])
             with r2:
                 st.markdown("**Nivel de Confianza**")
                 st.markdown(f'<div><span class="conf-pill alta">🟢 Alta <b>{stats["alta"]}</b></span><span class="conf-pill media">🟡 Media <b>{stats["media"]}</b></span><span class="conf-pill baja">🔴 Baja <b>{stats["baja"]}</b></span></div>',unsafe_allow_html=True)
-            with r3: st.metric("Faltantes sin Cruce",stats["items_sin_f"]); st.metric("Sobrantes sin Cruce",stats["items_sin_s"])
+            with r3:
+                st.metric("Faltantes sin Cruce",stats["items_sin_f"])
+                st.metric("Sobrantes sin Cruce",stats["items_sin_s"])
             st.divider()
-            # Leer el Excel desde disco para la descarga
-            _excel_data=None
-            if st.session_state.ruta_excel and os.path.exists(st.session_state.ruta_excel):
-                with open(st.session_state.ruta_excel,"rb") as _f:
-                    _excel_data=_f.read()
-            if _excel_data:
-                st.download_button(label="⬇️  Descargar Reporte Excel",data=_excel_data,file_name=f"Cruces_GoCorp_{st.session_state.resultado_ts}.xlsx",mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",use_container_width=True,key="btn_descarga")
-            else:
-                st.error("❌ No se encontró el archivo de resultado. Vuelve a ejecutar el proceso.")
-            if st.session_state.auto_descargar:
-                st.session_state.auto_descargar=False
-                st.markdown("""<script>setTimeout(function(){var b=window.parent.document.querySelectorAll('[data-testid="stDownloadButton"] button');b.forEach(function(x){x.click();});},800);</script>""",unsafe_allow_html=True)
+            st.download_button(
+                label="⬇️  Descargar Reporte Excel",
+                data=st.session_state.resultado_excel,
+                file_name=f"Cruces_GoCorp_{st.session_state.resultado_ts}.xlsx",
+                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                use_container_width=True,
+                key="btn_descarga"
+            )
     except ValueError as e: st.error(f"❌ Error al leer el archivo: {str(e)}")
     except Exception as e: st.error(f"❌ Error inesperado: {str(e)}")
 else:
